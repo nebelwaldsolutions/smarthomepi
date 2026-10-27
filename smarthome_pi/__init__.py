@@ -1,0 +1,1 @@
+"""SmartHome Pi Steuerdienst."""

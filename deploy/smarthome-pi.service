@@ -1,0 +1,19 @@
+[Unit]
+Description=SmartHome Pi Firestore GPIO Dienst
+After=network-online.target pigpiod.service
+Wants=network-online.target pigpiod.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/smarthome/pi-controller
+Environment=GOOGLE_APPLICATION_CREDENTIALS=/etc/smarthome-pi/service-account.json
+Environment=SMH_TICK_SEC=1.0
+Environment=SMH_LED_PWM=18
+Environment=SMH_LED_PWM_HZ=1000
+ExecStart=/home/pi/smarthome/pi-controller/venv/bin/python -m smarthome_pi.main
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

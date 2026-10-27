@@ -1,0 +1,19 @@
+[Unit]
+Description=pigpio GPIO daemon (Hardware-PWM u.a.)
+Documentation=https://github.com/joan2937/pigpio
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Ohne „-f“: pigpiod forked in den Hintergrund — passt zu systemd und vermeidet
+# Abbruch durch Signal 18 (SIGCONT) im Vordergrundmodus.
+Type=forking
+PIDFile=/var/run/pigpio.pid
+ExecStartPre=-/usr/bin/pkill -x pigpiod
+ExecStartPre=-/bin/rm -f /var/run/pigpio.pid
+ExecStart=/usr/local/bin/pigpiod
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

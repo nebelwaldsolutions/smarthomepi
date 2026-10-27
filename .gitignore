@@ -1,0 +1,15 @@
+# Secrets – niemals committen
+*adminsdk*.json
+service-account.json
+*.pem
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Artefakte
+debug_output.csv
+*.log
